@@ -94,6 +94,7 @@ html,body {
 }
 /* ... are implemented as a list... */
 .terminal .header .header-buttons ul li {
+  list-style-type: none;
   display: inline;
   float: right;
   font-size: 20px;
