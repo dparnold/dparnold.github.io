@@ -2,7 +2,9 @@ html,body {
     background-color: #FFFFFF;
 	height: 97%;
 }
-
+img{
+	max-width: 100%; /* Allows resizing of images */
+}
 /* Create the whole terminal which cosists of a window and a header */
 .terminal {
   width: 98%;
