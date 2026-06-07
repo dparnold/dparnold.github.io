@@ -1,0 +1,87 @@
+---
+import { getCollection, render } from "astro:content";
+import "../styles/site.css";
+
+const profileEntries = await getCollection("profile");
+const profile = profileEntries[0];
+const { Content: ProfileContent } = await render(profile);
+
+const sectionEntries = await getCollection("sections");
+const sections = await Promise.all(
+  sectionEntries
+    .sort((left, right) => left.data.order - right.data.order)
+    .map(async (section) => {
+      const { Content } = await render(section);
+      return { ...section, Content };
+    })
+);
+
+const pageTitle = profile.data.title;
+const description = "Digital transformation, IoT, AI, cloud, and growth.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar" aria-label="Site header">
+        <a class="brand" href="/">{profile.data.personName}</a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#profile">Profile</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-media" aria-hidden="true"></div>
+          <div class="hero-content">
+            <p class="kicker">{profile.data.pronouns} · {profile.data.location}</p>
+            <h1 id="hero-title">{profile.data.personName}</h1>
+            <p class="headline">{profile.data.headline}</p>
+            <div class="intro">
+              <ProfileContent />
+            </div>
+            <ul class="tag-list" aria-label="Expertise">
+              {profile.data.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </div>
+          <aside class="identity-panel" aria-label="Current context">
+            <span>Current</span>
+            <strong>{profile.data.company}</strong>
+            <span>Education</span>
+            <strong>{profile.data.education}</strong>
+          </aside>
+        </section>
+
+        <section class="section-grid" aria-label="Profile details">
+          {
+            sections.map(({ data, Content }) => (
+              <article class="section-card" id={data.anchor}>
+                <p class="section-eyebrow">{data.eyebrow}</p>
+                <h2>{data.title}</h2>
+                <div class="section-copy">
+                  <Content />
+                </div>
+                {
+                  data.items && (
+                    <ul class="detail-list">
+                      {data.items.map((item) => <li>{item}</li>)}
+                    </ul>
+                  )
+                }
+              </article>
+            ))
+          }
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
