@@ -1,0 +1,23 @@
+title: Dominik Arnold
+description: Digital transformation, IoT, AI, cloud, and growth.
+url: "https://domarn.de"
+baseurl: ""
+
+markdown: kramdown
+permalink: pretty
+
+kramdown:
+  input: Kramdown
+
+collections:
+  sections:
+    output: false
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+exclude:
+  - AGENTS.md

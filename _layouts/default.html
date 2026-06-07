@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    <title>{% if page.title == site.title %}{{ site.title }}{% else %}{{ page.title }} | {{ site.title }}{% endif %}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar" aria-label="Site header">
+        <a class="brand" href="{{ '/' | relative_url }}">{{ page.person_name | default: site.title }}</a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#profile">Profile</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-media" aria-hidden="true"></div>
+          <div class="hero-content">
+            <p class="kicker">{{ page.pronouns }} · {{ page.location }}</p>
+            <h1 id="hero-title">{{ page.person_name }}</h1>
+            <p class="headline">{{ page.headline }}</p>
+            <div class="intro">
+              {{ content }}
+            </div>
+            <ul class="tag-list" aria-label="Expertise">
+              {% for tag in page.tags %}
+                <li>{{ tag }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <aside class="identity-panel" aria-label="Current context">
+            <span>Current</span>
+            <strong>{{ page.company }}</strong>
+            <span>Education</span>
+            <strong>{{ page.education }}</strong>
+          </aside>
+        </section>
+
+        <section class="section-grid" aria-label="Profile details">
+          {% assign sections = site.sections | sort: "order" %}
+          {% for section in sections %}
+            {% assign section_id = section.anchor | default: section.title | downcase | replace: ' ', '-' %}
+            <article class="section-card" id="{{ section_id }}">
+              <p class="section-eyebrow">{{ section.eyebrow }}</p>
+              <h2>{{ section.title }}</h2>
+              <div class="section-copy">
+                {{ section.content }}
+              </div>
+              {% if section.items %}
+                <ul class="detail-list">
+                  {% for item in section.items %}
+                    <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

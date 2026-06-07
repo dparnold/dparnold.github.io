@@ -1,6 +1,6 @@
 ---
 title: Dominik Arnold
-personName: Dominik Arnold
+person_name: Dominik Arnold
 pronouns: He/Him
 location: Munich, Bavaria, Germany
 company: Schunk Group

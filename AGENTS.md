@@ -1,33 +1,31 @@
 # Project Instructions
 
-This repository is a static personal website built with Astro.
+This repository is a static personal website built with Jekyll for GitHub Pages.
 
 ## Structure
 
-- `src/content/profile/index.md` contains the main hero/profile content.
-- `src/content/sections/*.md` contains the editable Markdown sections rendered below the hero.
-- `src/pages/index.astro` renders the homepage from the Astro content collections.
-- `src/styles/site.css` contains the site styling.
-- `public/` contains static files copied directly into the production build.
-- `public/CNAME` contains the GitHub Pages custom domain.
+- `index.md` contains the main hero/profile content.
+- `_sections/*.md` contains the editable Markdown sections rendered below the hero.
+- `_layouts/default.html` renders the homepage layout.
+- `assets/css/site.css` contains the site styling.
+- `assets/img/` contains static image assets.
+- `CNAME` contains the GitHub Pages custom domain.
 
 ## Commands
 
-- Install dependencies with `npm ci`.
-- Run a local dev server with `npm run dev`.
-- Build the static site with `npm run build`.
-- Preview the production build with `npm run preview`.
+- Build locally with `jekyll build`.
+- Run a local preview with `jekyll serve`.
 
 ## Deployment
 
 GitHub Pages deployment is handled by `.github/workflows/deploy.yml`.
-The workflow builds Astro and uploads the `dist/` directory to GitHub Pages.
+The workflow builds Jekyll and uploads the `_site/` directory to GitHub Pages.
 
 In GitHub repository settings, Pages should use **GitHub Actions** as the build and deployment source.
 
 ## Editing Rules
 
-- Edit Markdown content in `src/content/`, not generated HTML.
-- Do not commit `node_modules/`, `.astro/`, or `dist/`.
+- Edit Markdown content in `index.md` and `_sections/`, not generated HTML.
+- Do not commit `_site/`, `.sass-cache/`, `.jekyll-cache/`, `.jekyll-metadata`, `node_modules/`, `dist/`, or `.astro/`.
 - Do not edit generated build output directly.
 - Keep the site static; do not add server-only features unless the deployment target changes.
