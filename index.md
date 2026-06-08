@@ -6,6 +6,8 @@ location: Munich, Bavaria, Germany
 company: Schunk Group
 education: The University of Edinburgh
 headline: Leading Digital Transformation
+profile_image: /assets/img/Dominik.png
+profile_image_alt: Portrait of Dominik Arnold
 tags:
   - IoT
   - AI

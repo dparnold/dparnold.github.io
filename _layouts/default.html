@@ -34,12 +34,19 @@
               {% endfor %}
             </ul>
           </div>
-          <aside class="identity-panel" aria-label="Current context">
-            <span>Current</span>
-            <strong>{{ page.company }}</strong>
-            <span>Education</span>
-            <strong>{{ page.education }}</strong>
-          </aside>
+          <div class="hero-aside">
+            {% if page.profile_image %}
+              <figure class="portrait-frame">
+                <img src="{{ page.profile_image | relative_url }}" alt="{{ page.profile_image_alt | default: page.person_name }}">
+              </figure>
+            {% endif %}
+            <aside class="identity-panel" aria-label="Current context">
+              <span>Current</span>
+              <strong>{{ page.company }}</strong>
+              <span>Education</span>
+              <strong>{{ page.education }}</strong>
+            </aside>
+          </div>
         </section>
 
         <section class="section-grid" aria-label="Profile details">

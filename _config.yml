@@ -21,3 +21,4 @@ defaults:
 
 exclude:
   - AGENTS.md
+  - README.md

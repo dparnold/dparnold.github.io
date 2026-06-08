@@ -214,10 +214,35 @@ h1 {
   font-weight: 700;
 }
 
+.hero-aside {
+  display: grid;
+  gap: 16px;
+  margin: 0 clamp(20px, 4vw, 42px) 34px 0;
+}
+
+.portrait-frame {
+  width: min(100%, 290px);
+  aspect-ratio: 1 / 1.1;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(81, 214, 255, 0.34);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.portrait-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .identity-panel {
   display: grid;
   gap: 8px;
-  margin: 0 clamp(20px, 4vw, 42px) 34px 0;
+  margin: 0;
   padding: 22px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -294,7 +319,7 @@ h1 {
     padding-top: 56px;
   }
 
-  .identity-panel {
+  .hero-aside {
     max-width: 420px;
     margin: 0 20px 34px;
   }
@@ -379,6 +404,17 @@ h1 {
     max-width: 100%;
     padding: 9px 11px;
     font-size: 0.82rem;
+  }
+
+  .hero-aside {
+    width: calc(100vw - 56px);
+    max-width: calc(100vw - 56px);
+    margin: 2px 18px 0;
+  }
+
+  .portrait-frame {
+    width: min(44vw, 160px);
+    aspect-ratio: 1;
   }
 
   .identity-panel {
